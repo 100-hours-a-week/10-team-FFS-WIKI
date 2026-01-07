@@ -1,8 +1,8 @@
 ---
-name: Sprint-Backlog-Template
-about: 스프린트 백로그
+name: Sprint-Backlog-Epic-Template
+about: 스프린트 백로그 에픽 템플릿
 title: ''
-labels: 스프린트-백로그
+labels: ''
 assignees: ''
 
 ---
