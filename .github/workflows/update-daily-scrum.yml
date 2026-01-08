@@ -1,0 +1,37 @@
+name: Update Daily Scrum Issue
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  update-scrum:
+    runs-on: ubuntu-latest
+
+    if: contains(github.event.issue.labels.*.name, '데일리-스크럼')
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install PyGithub
+
+      - name: Run update script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_NAME: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          COMMENT_AUTHOR: ${{ github.event.comment.user.login }}
+          COMMENT_AUTHOR_TYPE: ${{ github.event.comment.user.type }}
+        run: python .github/scripts/update_scrum_body.py
