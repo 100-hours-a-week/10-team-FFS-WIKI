@@ -34,4 +34,4 @@ jobs:
           COMMENT_BODY: ${{ github.event.comment.body }}
           COMMENT_AUTHOR: ${{ github.event.comment.user.login }}
           COMMENT_AUTHOR_TYPE: ${{ github.event.comment.user.type }}
-        run: python .github/scripts/update_scrum_body.py
+        run: python .github/scripts/update_scrum_script.py
